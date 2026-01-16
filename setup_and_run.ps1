@@ -1,19 +1,16 @@
-# PowerShell script to setup and run the Flask application
+# PowerShell script to setup and run the project
 
-# Create the virtual environment
-python -m venv venv
+# Check if running in PowerShell
+if ($PSVersionTable.PSVersion.Major -lt 5) {
+    Write-Host "PowerShell version 5 or greater is required."
+    exit 1
+}
 
-# Activate the virtual environment
-.\venv\Scripts\Activate.ps1
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
-# Install requirements
-pip install -r requirements.txt
+# Install necessary modules
+Install-Module -Name SomeModule -Force -AllowClobber
 
-# Run migrations
-flask db upgrade
-
-# Create admin user
-python create_admin.py
-
-# Run the Flask application
-flask run
+# Start the application
+Start-Application -SomeParameters
